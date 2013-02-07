@@ -12,7 +12,14 @@ namespace ExampleApp
         static void Main(string[] args)
         {
             RtmpSharp2.DebugAnnounce.Announce += delegate(string str) { Console.WriteLine(str); };
-            var cl = new Client("199.9.254.78", 1935);
+
+            var twitchUsher = TwitchUsher.FromUser("day9tv");
+            if (twitchUsher.Streams.Count == 0)
+            {
+                Console.WriteLine("This channel doesn't exist or is not live");
+                return;
+            }
+            var cl = new Client(twitchUsher.Streams[0].Server, 1935, twitchUsher);
             cl.StartHandshake();
 
             bool connect = false;
@@ -20,15 +27,6 @@ namespace ExampleApp
             {
                 //Console.WriteLine(cl.CurrentState);
                 cl.Update();
-
-                if (cl.CurrentState == ClientBase.ClientStates.Handshake_Done && !connect)
-                {
-                    connect = true;
-                    cl.SendMessage(new RtmpSharp2.Abstract.ControlMessages.SetChunkSize(10000));
-                    cl.SendMessage(new RtmpSharp2.Abstract.CommandMessages.Connect());
-                    cl.SendMessage(new RtmpSharp2.Abstract.CommandMessages.CreateStream());
-                    cl.SendMessage(new RtmpSharp2.Abstract.CommandMessages.Play("test"));
-                }
                 System.Threading.Thread.Sleep(50);
             }
         }

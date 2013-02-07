@@ -18,6 +18,7 @@ namespace RtmpSharp2.Abstract.CommandMessages
         public string PageUrl = "NONE";
         public int ObjectEncoding = 0x00; //AMF0 is only supported atm
 
+
         private const int TransactionId = 1;
 
         public Connect()
@@ -43,7 +44,7 @@ namespace RtmpSharp2.Abstract.CommandMessages
             obj.Numbers.Add("videoFunction", VideoFunction);
             obj.Strings.Add("pageUrl", PageUrl);
             obj.Numbers.Add("objectEncoding", ObjectEncoding);
-            
+
             writer.WriteObject(obj);
             Data = writer.GetByteArray();
         }

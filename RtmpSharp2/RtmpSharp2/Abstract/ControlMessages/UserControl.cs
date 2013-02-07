@@ -23,9 +23,9 @@ namespace RtmpSharp2.Abstract.ControlMessages
 
         public UserControl(EventTypes eventType, int streamId = 1, int bufferlength = 1000, int pingTime = 0) : base(4)
         {
-            var memory = new MemoryStream(Data);
+            var memory = new MemoryStream();
             var writer = new EndianBinaryWriter(EndianBitConverter.Big, memory);
-            Data = EndianBitConverter.Big.GetBytes((byte)eventType);
+            writer.Write((ushort) eventType);
 
             switch (eventType)
             {
@@ -54,6 +54,7 @@ namespace RtmpSharp2.Abstract.ControlMessages
                 default:
                     break;
             }
+            Data = memory.ToArray();
         }
     }
 }

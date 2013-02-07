@@ -23,7 +23,6 @@ namespace RtmpSharp2.Abstract
 
         public ClientBase()
         {
-
         }
 
         public void StartHandshake()

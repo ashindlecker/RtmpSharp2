@@ -7,7 +7,7 @@ namespace RtmpSharp2.Abstract.CommandMessages
 {
     public class CreateStream : CommandMessage
     {
-        public const int TransactionId = 3;
+        public const int TransactionId = 2;
 
         public CreateStream()
         {

@@ -12,6 +12,7 @@ namespace RtmpSharp2.Abstract.CommandMessages
 
         public Play(string stream = "none")
         {
+            MHeader.MessageStreamId = 1;
             StreamName = stream;
             ApplyValues();
         }
