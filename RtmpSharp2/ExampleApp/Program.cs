@@ -26,6 +26,8 @@ namespace ExampleApp
                     connect = true;
                     cl.SendMessage(new RtmpSharp2.Abstract.ControlMessages.SetChunkSize(10000));
                     cl.SendMessage(new RtmpSharp2.Abstract.CommandMessages.Connect());
+                    cl.SendMessage(new RtmpSharp2.Abstract.CommandMessages.CreateStream());
+                    cl.SendMessage(new RtmpSharp2.Abstract.CommandMessages.Play("test"));
                 }
                 System.Threading.Thread.Sleep(50);
             }

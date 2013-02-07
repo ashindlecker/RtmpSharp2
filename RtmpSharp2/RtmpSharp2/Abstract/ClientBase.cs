@@ -5,6 +5,7 @@ using System.Text;
 using MiscUtil.Conversion;
 using MiscUtil.IO;
 using System.IO;
+using RtmpSharp2.Abstract.ControlMessages;
 
 namespace RtmpSharp2.Abstract
 {
@@ -84,7 +85,13 @@ namespace RtmpSharp2.Abstract
         protected virtual void ParseChunk(Chunk chunk)
         {
             //TODO: Add automatic responses to window acknowledgements
-            
+
+            if (chunk.MHeader.MessageType == 5 || chunk.MHeader.MessageType == 3) //This are acknowledgements
+            {
+                var ack = new WindowAcknowledgement(-1);
+                ack.ParseChunkData(chunk);
+                SendMessage(new WindowAcknowledgement(ack.WindowSize));
+            }
         }
 
         protected virtual void Debug(string str)

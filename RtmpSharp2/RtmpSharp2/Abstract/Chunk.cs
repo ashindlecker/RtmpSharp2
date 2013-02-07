@@ -55,9 +55,16 @@ namespace RtmpSharp2.Abstract
             ParseChunkData(dataMemory);
         }
 
+
+        public void ParseChunkData(Chunk chunk)
+        {
+            var dataMemory = new MemoryStream(chunk.Data);
+            ParseChunkData(dataMemory);
+        }
+
         protected virtual void ParseChunkData(MemoryStream memory)
         {
-
+            //This is overridden in inherrited classes, but is NOT NEEDED
         }
     }
 }

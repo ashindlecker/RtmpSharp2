@@ -43,6 +43,8 @@
     <Compile Include="Abstract\ClientBase.cs" />
     <Compile Include="Abstract\CommandMessage.cs" />
     <Compile Include="Abstract\CommandMessages\Connect.cs" />
+    <Compile Include="Abstract\CommandMessages\CreateStream.cs" />
+    <Compile Include="Abstract\CommandMessages\Play.cs" />
     <Compile Include="Abstract\ControlMessages\Abort.cs" />
     <Compile Include="Abstract\ControlMessages\Acknowledgement.cs" />
     <Compile Include="Abstract\ControlMessages\ControlMessageBase.cs" />

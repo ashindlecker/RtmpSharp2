@@ -9,11 +9,9 @@ namespace RtmpSharp2.Abstract
 {
     public class CommandMessage : Chunk
     {
-        public AmfData Amf;
 
         public CommandMessage(byte[] amfData)
         {
-            Amf = new AmfData();
             MHeader.MessageStreamId = 0;
             BHeader.ChunkStreamId = 3;
             MHeader.MessageType = 0x14; //AMF0 encoding is only supported as of now
@@ -22,7 +20,6 @@ namespace RtmpSharp2.Abstract
 
         public CommandMessage()
         {
-            Amf = new AmfData();
             MHeader.MessageStreamId = 0;
             BHeader.ChunkStreamId = 3;
             MHeader.MessageType = 0x14; //AMF0 encoding is only supported as of now
@@ -30,7 +27,6 @@ namespace RtmpSharp2.Abstract
 
         public CommandMessage(AmfWriter amfData)
         {
-            Amf = new AmfData();
             MHeader.MessageStreamId = 0;
             BHeader.ChunkStreamId = 3;
             MHeader.MessageType = 0x14; //AMF0 encoding is only supported as of now
